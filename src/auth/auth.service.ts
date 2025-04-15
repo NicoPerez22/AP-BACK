@@ -4,6 +4,7 @@ import { ApiResponse } from 'shared/models/apiResponse';
 import { User } from 'src/user/entity/user.entity';
 import { UserService } from 'src/user/user.service';
 import * as bcryptjs from 'bcryptjs';
+import { UserDTO } from 'src/user/models/user';
 
 @Injectable()
 export class AuthService {
@@ -12,7 +13,7 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) {}
 
-  async registerUser({ email, password }) {
+  async registerUser({ email, password }: UserDTO) {
     const apiResponse = new ApiResponse<User>();
 
     try {
@@ -39,7 +40,7 @@ export class AuthService {
     }
   }
 
-  async login({ email, password }) {
+  async login({ email, password }: UserDTO) {
     const apiResponse = new ApiResponse<User>();
 
     try {
